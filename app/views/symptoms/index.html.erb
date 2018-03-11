@@ -53,7 +53,10 @@
           });
       </script>
 
-        
+        <div class="form-group">
+      <%= f.label :users_name_cont, "User name contains" %>
+      <%= f.text_field :users_name_cont, :class => "form-control", :placeholder => "User name contains" %>
+    </div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
