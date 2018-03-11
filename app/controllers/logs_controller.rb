@@ -1,7 +1,17 @@
 class LogsController < ApplicationController
+  before_action :current_user_must_be_log_user, :only => [:show, :edit, :update, :destroy]
+
+  def current_user_must_be_log_user
+    log = Log.find(params[:id])
+
+    unless current_user == log.user
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
-    @q = Log.ransack(params[:q])
-    @logs = @q.result(:distinct => true).includes(:user, :symptom).page(params[:page]).per(10)
+    @q = current_user.logs.ransack(params[:q])
+      @logs = @q.result(:distinct => true).includes(:user, :symptom).page(params[:page]).per(10)
 
     render("logs/index.html.erb")
   end
@@ -48,8 +58,6 @@ class LogsController < ApplicationController
 
   def update
     @log = Log.find(params[:id])
-
-    @log.user_id = params[:user_id]
     @log.symptom_id = params[:symptom_id]
 
     save_status = @log.save

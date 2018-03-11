@@ -283,6 +283,7 @@ DEPENDENCIES
   bootstrap4-kaminari-views
   byebug
   coffee-rails (~> 4.2)
+  devise
   draft_generators!
   font-awesome-sass (~> 4.5.0)
   jbuilder (~> 2.5)
