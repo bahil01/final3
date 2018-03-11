@@ -17,7 +17,7 @@
       <% @logs.each do |log| %>
       <tr>
         <td><%= log.user.name %></td>
-        <td><%= log.symptom_id %></td>
+        <td><%= log.symptom.created_at %></td>
         <td>
           <a href="/logs/<%= log.id %>" class="btn btn-primary">Show</a>
           <a href="/logs/<%= log.id %>/edit" class="btn btn-warning">Edit</a>
